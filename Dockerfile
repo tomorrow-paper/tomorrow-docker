@@ -43,7 +43,8 @@ RUN apt-get clean &&\
 
 # Update PATH and define env variables
 ENV PATH=/root/.cargo/bin:$PATH\
-    USER=root
+    USER=root\
+    TF_CPP_MIN_LOG_LEVEL=2
 
 # Create a volume containing the indexed crates registry
 VOLUME /root/.cargo/registry
