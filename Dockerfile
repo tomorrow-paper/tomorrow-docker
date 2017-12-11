@@ -5,7 +5,7 @@ LABEL maintainer="Valentin Fries <contact@fries.io>, Vincent Milano <vincent_mot
 RUN apt-get update &&\
     apt-get install -y\
         # Rust
-        curl wget g++ git pkg-config\
+        vim curl wget g++ git pkg-config\
         # TensorFlow
         python3-numpy python3-dev python3-pip python3-wheel libcupti-dev libssl-dev\
         # kcov
@@ -19,6 +19,9 @@ RUN echo "deb [arch=amd64] http://storage.googleapis.com/bazel-apt stable jdk1.8
     apt-get update -y &&\
     apt-get install -y openjdk-8-jdk bazel &&\
     apt-get upgrade -y bazel
+
+# Install TensorFlow python module
+RUN pip3 install tensorflow
 
 # Configure Rust development environment
 RUN curl -sSf https://sh.rustup.rs/ | sh -s -- --default-toolchain nightly -y
@@ -41,3 +44,6 @@ RUN apt-get clean &&\
 # Update PATH and define env variables
 ENV PATH=/root/.cargo/bin:$PATH\
     USER=root
+
+# Create a volume containing the indexed crates registry
+VOLUME /root/.cargo/registry
