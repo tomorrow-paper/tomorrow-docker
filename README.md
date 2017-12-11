@@ -12,7 +12,7 @@ Docker image containing all the required libraries and runtime dependencies for 
 
 ```bash 
 $ docker pull mrkloan/tomorrow
-$ docker run --name tomorrow -v .:/src -it mrkloan/tomorrow bash
+$ docker run --name tomorrow -v $(pwd):/src -it mrkloan/tomorrow bash
 ```
 
 ## Features
